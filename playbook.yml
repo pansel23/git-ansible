@@ -1,0 +1,21 @@
+---
+- name: Install NGINX on EC2
+  hosts: web
+  become: yes
+
+  tasks:
+    - name: Update packages
+      yum:
+        name: '*'
+        state: latest
+
+    - name: Install NGINX
+      yum:
+        name: nginx
+        state: present
+
+    - name: Start NGINX
+      service:
+        name: nginx
+        state: started
+        enabled: yes
